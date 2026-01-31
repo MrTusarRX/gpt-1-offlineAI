@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Modern Luxury Dark Theme Palette */
+  --background: 240 10% 4%;
+  --foreground: 0 0% 98%;
+
+  --card: 240 10% 7%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 240 10% 7%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 266 100% 64%;  /* Vibrant Purple */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 5% 15%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 65%;
+
+  --accent: 266 100% 64%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5% 15%;
+  --input: 240 5% 15%;
+  --ring: 266 100% 64%;
+
+  --radius: 0.75rem;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-xl;
+  }
+  
+  .glass-input {
+    @apply bg-black/20 backdrop-blur-sm border-white/10 focus:border-primary/50 focus:bg-black/30 transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-pink-500;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 15px theme('colors.primary.DEFAULT'); }
+  50% { opacity: 1; box-shadow: 0 0 25px theme('colors.primary.DEFAULT'); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
